@@ -3,23 +3,18 @@
 
 #include <vector>
 
-enum class CellState {
-    Empty,
+enum class Sign {
     Cross,
-    Circle
-};
-
-enum class Player {
-    Player1,
-    Player2
+    Circle,
+    Empty
 };
 
 // Game state struct
 struct TicTacToeData {
-    std::vector<std::vector<CellState>> board;
-    Player turn;
+    std::vector<std::vector<Sign>> board;
+    Sign turn;
     int sector; // In which sector the move needs to be done, 9 - all
-    bool super_mode; // Whether the game is 3x3 or 9x9 (with all the fancy mechanics)
+    bool super_mode; // Whether the ame is 3x3 or 9x9 (with all the fancy mechanics)
     bool started;
 };
 
@@ -28,11 +23,11 @@ class GameData {
 public:
     GameData() {
         ticTacToeData.board = {
-            {CellState::Empty, CellState::Empty, CellState::Empty},
-            {CellState::Empty, CellState::Empty, CellState::Empty},
-            {CellState::Empty, CellState::Empty, CellState::Empty}
+            {Sign::Empty, Sign::Empty, Sign::Empty},
+            {Sign::Empty, Sign::Empty, Sign::Empty},
+            {Sign::Empty, Sign::Empty, Sign::Empty}
         };
-        ticTacToeData.turn = Player::Player1;
+        ticTacToeData.turn = Sign::Cross;
         ticTacToeData.sector = 9;
         ticTacToeData.super_mode = false;
         ticTacToeData.started = false;
