@@ -4,19 +4,23 @@ TEST_TARGET = bin/Test_SuperTicTacToe
 
 # Compilation flags
 CXX = g++
-CXXFLAGS = -Iinclude -Wall -Wextra -pedantic -O2 -flto -march=native -std=c++11
+CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -O2  -std=c++17
 
 # Directories
 SRCDIR = src
 INCDIR = include
+ENGINE_SRCDIR = engine/src
+UTILS_SRCDIR = utils
+BOT_UTILS_SRCDIR = utils/bot_utils
 TESTDIR = tests
 OBJDIR = obj
 BINDIR = bin
 
-SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+# Source files
+SOURCES = $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(ENGINE_SRCDIR)/*.cpp) $(wildcard $(UTILS_SRCDIR)/*.cpp) $(wildcard $(BOT_UTILS_SRCDIR)/*.cpp)
 TEST_SOURCES = $(wildcard $(TESTDIR)/*.cpp)
-OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
-TEST_OBJECTS = $(patsubst $(TESTDIR)/%.cpp,$(OBJDIR)/%.o,$(TEST_SOURCES))
+OBJECTS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(notdir $(SOURCES)))
+TEST_OBJECTS = $(patsubst %.cpp,$(OBJDIR)/test_%.o,$(notdir $(TEST_SOURCES)))
 
 # End rule
 $(TARGET): $(OBJECTS)
@@ -28,7 +32,19 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Test compilation rule
+$(OBJDIR)/%.o: $(ENGINE_SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: $(UTILS_SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: $(BOT_UTILS_SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Test object files rule
 $(OBJDIR)/test_%.o: $(TESTDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
