@@ -10,9 +10,10 @@ std::pair<int, int> generate_bot_move9x9(TicTacToeData data, int mode){
         Random agent = Random(data);
         return agent.main_fun();
     }
-    // else if(mode == 1 || mode == 2 || mode == 3){
-    //     //TODO
-    // }
+    else if(mode == 1 || mode == 2 || mode == 3){
+        MinMax agent = MinMax(data, mode);
+        return agent.main_fun();
+    }
     else if(mode == 7 || mode == 8 || mode == 9){
         MCS agent = MCS(data, mode);
         return agent.main_fun();

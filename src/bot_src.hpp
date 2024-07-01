@@ -4,6 +4,7 @@
 #include "../utils/bot_utils/Bot.hpp"
 #include "../utils/bot_utils/MCS.hpp"
 #include "../utils/bot_utils/Random.hpp"
+#include "../utils/bot_utils/MinMax.hpp"
 
 /*
     return values:

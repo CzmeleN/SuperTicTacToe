@@ -2,7 +2,7 @@
 #include "../include/game_data.hpp"
 #include "bot_src.hpp"
 
-#define game_no 250
+#define game_no 100
 
 //function to generate seed
 long seed()
@@ -26,7 +26,7 @@ int main() {
     TicTacToeData clean_data = {board, turn, sector, super_mode, started};
 
     int score_x = 0, score_o = 0, score_tie = 0;
-    const int mode1 = 8, mode2 = 9;
+    const int mode1 = 2, mode2 = 3;
 
     for(int i = 0; i < game_no; i++){
         Bot bot = Bot(clean_data);
