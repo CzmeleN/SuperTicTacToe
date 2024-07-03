@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 #include "../include/game_data.hpp"
 
+#define inf 1e9 + 7
+
 class Bot{
 public:
     //data that

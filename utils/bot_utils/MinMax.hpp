@@ -12,7 +12,6 @@
 #define easy_max_deep_MinMax 1
 #define medium_max_deep_MinMax 1
 #define hard_max_deep_MinMax 2
-#define inf 1e9 + 7
 
 class MinMax : public Bot{
 public:

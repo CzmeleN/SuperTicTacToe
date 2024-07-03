@@ -4,7 +4,7 @@ TEST_TARGET = bin/Test_SuperTicTacToe
 
 # Compilation flags
 CXX = g++
-CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -O2  -std=c++17
+CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -O3  -std=c++17
 
 # Directories
 SRCDIR = src
