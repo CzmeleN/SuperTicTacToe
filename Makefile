@@ -4,11 +4,10 @@ TEST_TARGET = bin/Test_SuperTicTacToe
 
 # Compilation flags
 CXX = g++
-CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -O3  -std=c++17
+CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -Wall -Wextra -pedantic -O2 -flto -march=native -std=c++17
 
 # Directories
 SRCDIR = src
-INCDIR = include
 ENGINE_SRCDIR = engine/src
 UTILS_SRCDIR = utils
 BOT_UTILS_SRCDIR = utils/bot_utils
@@ -27,19 +26,22 @@ $(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
 	$(CXX) $(OBJECTS) -o $(TARGET)
 
-# Object files rule
+# Object files rule for source files
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Object files rule for engine source files
 $(OBJDIR)/%.o: $(ENGINE_SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Object files rule for utils source files
 $(OBJDIR)/%.o: $(UTILS_SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Object files rule for bot_utils source files
 $(OBJDIR)/%.o: $(BOT_UTILS_SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -68,3 +70,4 @@ clean:
 .PHONY: run
 run: $(TARGET)
 	./$(TARGET)
+
