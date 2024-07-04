@@ -58,6 +58,14 @@ We have three different variants for the MCS, Minimax, and MCTS bots: easy, medi
 
 ---
 
+### More accurate stats of battle between bots
+
+| heatmap of wins | heatmap of loses | heatmap of ties| 
+| --- | --- | --- | 
+| ![image](data/charts/heatmap_wins.png) | ![image](data/charts/heatmap_loses.png) | ![image](data/charts/heatmap_tie.png) |
+
+---
+
 ### Conclusions
 
 As we see, even the easy bots easily beat the random bot.\
