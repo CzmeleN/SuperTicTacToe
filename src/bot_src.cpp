@@ -31,5 +31,18 @@ std::pair<int, int> generate_bot_move9x9(TicTacToeData data, int mode){
 }
 
 std::pair<int, int> generate_bot_move3x3(TicTacToeData data, int mode){ //TODO
+    if(mode == 10){
+        Random3x3 agent = Random3x3(data);
+        return agent.main_fun();
+    }
+    else if(mode == 11 || mode == 12 || mode == 13){
+        MCS3x3 agent = MCS3x3(data, mode);
+        return agent.main_fun();
+    }
+    else{
+        std::cout << "game mode is wrong" << std::endl;
+        exit(69);
+    }
+
     return {-1, -1};
 }
