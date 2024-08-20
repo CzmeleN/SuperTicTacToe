@@ -1,37 +1,18 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
-#include "node.hpp"
-#include <string>
-
-class DataNode : public Node {
+class Data {
 public:
-    DataNode(const std::string& name) : Node(name) {}
-    ~DataNode() override = default;
+    Data();
+    Data(int width, int height);
 
-    void update() override {
-        // TODO
-    }
-
-    void setResolution(int width, int height) {
-        resolution = {width, height};
-    }
-
-    void setFullscreen(bool isFullscreen) {
-        fullscreen = isFullscreen;
-    }
-
-    std::pair<int, int> getResolution() const {
-        return resolution;
-    }
-
-    bool isFullscreen() const {
-        return fullscreen;
-    }
+    int getWidth() const;
+    int getHeight() const;
+    void setResolution(int width, int height);
 
 private:
-    std::pair<int, int> resolution = {1920, 1080};
-    bool fullscreen = false;
+    int width;
+    int height;
 };
 
 #endif

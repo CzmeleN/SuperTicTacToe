@@ -1,27 +1,23 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-#include <vector>
-#include <memory>
-#include <string>
+#include <SDL3/SDL.h>
 
-// Base node class
 class Node {
 public:
-    Node(const std::string& name) : name(name) {}
+    Node();
+    Node(int x, int y, int w, int h);
     virtual ~Node() = default;
 
-    void addChild(std::shared_ptr<Node> child) {
-        children.push_back(child);
-    }
+    virtual void render(SDL_Renderer* renderer) = 0;
+    virtual void update() = 0;
 
-    virtual void update() = 0; // Pure virtual function
-
-    std::string getName() const { return name; }
+    bool isVisible() const { return visible; }
 
 protected:
-    std::string name;
-    std::vector<std::shared_ptr<Node>> children;
+    int x, y;
+    int width, height;
+    bool visible;
 };
 
 #endif
