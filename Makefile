@@ -6,12 +6,16 @@ TEST_TARGET = bin/Test_SuperTicTacToe
 CXX = g++
 CXXFLAGS = -Iinclude -Iengine/include -Iutils -Iutils/bot_utils -O3  -std=c++17
 
+# Linker flags
+LDFLAGS = -lSDL3 -lSDL3_image -lSDL3_ttf -ljsoncpp
+
 # Directories
 SRCDIR = src
 INCDIR = include
 ENGINE_SRCDIR = engine/src
 UTILS_SRCDIR = utils
 BOT_UTILS_SRCDIR = utils/bot_utils
+RESOURCES_DIR = resources
 TESTDIR = tests
 OBJDIR = obj
 BINDIR = bin
@@ -25,7 +29,7 @@ TEST_OBJECTS = $(patsubst %.cpp,$(OBJDIR)/test_%.o,$(notdir $(TEST_SOURCES)))
 # End rule
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
-	$(CXX) $(OBJECTS) -o $(TARGET)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 
 # Object files rule
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
@@ -52,7 +56,7 @@ $(OBJDIR)/test_%.o: $(TESTDIR)/%.cpp
 # Creating test program rule
 $(TEST_TARGET): $(OBJECTS) $(TEST_OBJECTS)
 	@mkdir -p $(BINDIR)
-	$(CXX) $(OBJECTS) $(TEST_OBJECTS) -o $(TEST_TARGET)
+	$(CXX) $(OBJECTS) $(TEST_OBJECTS) -o $(TEST_TARGET) $(LDFLAGS)
 
 # Running tests
 .PHONY: test

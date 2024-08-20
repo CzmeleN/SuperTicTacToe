@@ -1,24 +1,25 @@
 #ifndef CONTAINER_HPP
 #define CONTAINER_HPP
 
+#include <vector>
+#include <memory>
 #include "node.hpp"
 
-// Derived from Node, for organization of game objects,
-// etc. Main Node -> Menu -> Buttons -> button_start | button_exit
 class Container : public Node {
 public:
-    Container(const std::string& name) : Node(name) {}
-    ~Container() override = default;
+    Container();
+    void addNode(std::shared_ptr<Node> node);
+    void removeNode(std::shared_ptr<Node> node);
+    void render(SDL_Renderer* renderer) override;
+    void update() override;
+    void setVisible(bool visibility);
+    bool isVisible() const;
 
-    void update() override {
-        for (auto& child : children) {
-            child->update();
-        }
-    }
+    const std::vector<std::shared_ptr<Node>>& getChildren() const;
 
-    void addElement(std::shared_ptr<Node> element) {
-        addChild(element);
-    }
+private:
+    std::vector<std::shared_ptr<Node>> nodes;
+    bool visible;
 };
 
 #endif
