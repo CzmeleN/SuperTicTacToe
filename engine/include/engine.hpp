@@ -2,7 +2,6 @@
 #define ENGINE_HPP
 
 #include <string>
-#include <vector>
 #include <memory>
 #include <SDL3/SDL.h>
 #include "game_loader.hpp"

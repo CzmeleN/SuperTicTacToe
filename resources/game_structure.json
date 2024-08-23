@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {
+      "type": "Button",
+      "x": 100,
+      "y": 200,
+      "width": 200,
+      "height": 50,
+      "background": "resources/start_button.png",
+      "text": "Start",
+      "text_color": [255, 255, 255, 255],
+      "font": "resources/font.ttf",
+      "font_size": 24,
+      "onClick": "startGame"
+    },
+    {
+      "type": "Button",
+      "x": 100,
+      "y": 300,
+      "width": 200,
+      "height": 50,
+      "background": "resources/exit_button.png",
+      "text": "Exit",
+      "text_color": [255, 255, 255, 255],
+      "font": "resources/font.ttf",
+      "font_size": 24,
+      "onClick": "exitGame"
+    }
+  ]
+}
