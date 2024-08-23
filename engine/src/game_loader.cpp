@@ -2,6 +2,7 @@
 #include <fstream>
 #include <dlfcn.h>
 #include <cstdlib>
+#include <iostream>
 
 GameLoader::GameLoader(SDL_Renderer* renderer, AssetManager& assetManager)
     : renderer(renderer), assetManager(assetManager) {}
@@ -31,14 +32,26 @@ std::shared_ptr<Button> GameLoader::createButton(const Json::Value& nodeData) {
     int height = nodeData["height"].asInt();
 
     SDL_Texture* bgTexture = assetManager.createBackgroundTexture(renderer, nodeData["background"].asString());
+
     TTF_Font* font = TTF_OpenFont(nodeData["font"].asString().c_str(), nodeData["font_size"].asInt());
+    if (font == nullptr) {
+        std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        return nullptr;
+    }
+
     SDL_Color color = {
         static_cast<Uint8>(nodeData["text_color"][0].asInt()),
         static_cast<Uint8>(nodeData["text_color"][1].asInt()),
         static_cast<Uint8>(nodeData["text_color"][2].asInt()),
         static_cast<Uint8>(nodeData["text_color"][3].asInt())
     };
+
     SDL_Texture* textTexture = assetManager.createTextTexture(renderer, font, nodeData["text"].asString(), color);
+    if (textTexture == nullptr) {
+        std::cerr << "Failed to create text texture! SDL Error: " << SDL_GetError() << std::endl;
+        TTF_CloseFont(font);
+        return nullptr;
+    }
 
     auto button = std::make_shared<Button>(x, y, width, height, bgTexture, textTexture);
 
