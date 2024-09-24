@@ -35,7 +35,7 @@ std::shared_ptr<Button> GameLoader::createButton(const Json::Value& nodeData) {
 
     TTF_Font* font = TTF_OpenFont(nodeData["font"].asString().c_str(), nodeData["font_size"].asInt());
     if (font == nullptr) {
-        std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        std::cerr << "Failed to load font! SDL_ttf Error: " << SDL_GetError() << std::endl;
         return nullptr;
     }
 

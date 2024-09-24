@@ -9,7 +9,7 @@ Engine::Engine(int width, int height) : data(width, height) {
     }
 
     if (TTF_Init() == -1) {
-        std::cerr << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        std::cerr << "SDL_ttf could not initialize! SDL_ttf Error: " << SDL_GetError() << std::endl;
         throw std::runtime_error("Failed to initialize SDL_ttf");
     }
 

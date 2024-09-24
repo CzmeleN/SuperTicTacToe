@@ -3,7 +3,7 @@
 SDL_Texture* AssetManager::createBackgroundTexture(SDL_Renderer* renderer, const std::string& filePath) {
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
-        SDL_Log("Unable to load image %s: %s", filePath.c_str(), IMG_GetError());
+        SDL_Log("Unable to load image %s: %s", filePath.c_str(), SDL_GetError());
         return nullptr;
     }
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
